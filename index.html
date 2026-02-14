@@ -4,39 +4,76 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#000000">
-  
+
+  <!-- iOS standalone app mode -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="EaglerCraft">
   <link rel="apple-touch-icon" href="/icon-512x512-compressed.png">
 
-  <link rel="manifest" href="/manifest.json">
   <title>EaglerCraft</title>
+
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+
+    #startBtn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 18px 28px;
+      font-size: 20px;
+      border: none;
+      border-radius: 10px;
+      background: #1e90ff;
+      color: white;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    #eagler {
+      width: 100vw;
+      height: 100vh;
+      border: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+  </style>
 </head>
 
 <body>
-  <p>Redirecting...</p>
 
-  <button onclick="redirect()">Press me if you haven't been redirected.</button>
+  <!-- Start button required for iOS fullscreen -->
+  <button id="startBtn">Start EaglerCraft</button>
+
+  <!-- EaglerCraft iframe -->
+  <iframe
+    id="eagler"
+    src="https://m.eaglercraft.com"
+    allow="fullscreen; pointer-lock"
+  ></iframe>
 
   <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-          .then(registration => {
-            console.log('SW registered: ', registration);
-          })
-          .catch(registrationError => {
-            console.log('SW registration failed: ', registrationError);
-          });
-      });
-    }
+    const startBtn = document.getElementById("startBtn");
+    const frame = document.getElementById("eagler");
 
-    function redirect() {
-      window.location.replace("https://m.eaglercraft.com");
-      alert("Install this as a PWA and close this alert.");
-    }
+    startBtn.onclick = () => {
+      // Request fullscreen (iOS + desktop compatible)
+      if (frame.requestFullscreen) frame.requestFullscreen();
+      else if (frame.webkitRequestFullscreen) frame.webkitRequestFullscreen();
+
+      // Focus the iframe so keyboard input works immediately
+      frame.focus();
+
+      // Hide the button once fullscreen is triggered
+      startBtn.style.display = "none";
+    };
   </script>
 
-  <noscript>You need to enable JavaScript for this page to function properly</noscript>
 </body>
 </html>
