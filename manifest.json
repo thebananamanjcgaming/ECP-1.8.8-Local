@@ -1,7 +1,7 @@
 {
   "name": "EaglerCraft 1.8.8",
   "short_name": "EaglerCraft",
-  "start_url": "./index.html",
+  "start_url": "https://ecp-1-8-8-local.vercel.app",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#000000",
