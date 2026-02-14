@@ -8,7 +8,7 @@
   <!-- iOS standalone app mode -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="EaglerCraft">
-  <link rel="apple-touch-icon" href="/icon-512x512-compressed.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
   <title>EaglerCraft</title>
 
@@ -42,6 +42,7 @@
       position: fixed;
       top: 0;
       left: 0;
+      display: none; /* HIDDEN until Start is pressed */
     }
   </style>
 </head>
@@ -63,6 +64,9 @@
     const frame = document.getElementById("eagler");
 
     startBtn.onclick = () => {
+      // Show the iframe
+      frame.style.display = "block";
+
       // Request fullscreen (iOS + desktop compatible)
       if (frame.requestFullscreen) frame.requestFullscreen();
       else if (frame.webkitRequestFullscreen) frame.webkitRequestFullscreen();
