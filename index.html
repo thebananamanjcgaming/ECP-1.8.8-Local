@@ -1,5 +1,7 @@
 <p>Redirecting...</p>
 
+<button onClick="redirect();">Press me if you haven't been redirected.</button>
+
 <link rel="manifest" href="/manifest.json" />
 
 <script>
@@ -17,8 +19,10 @@
 </script>
 
 <script>
-  window.location.replace("https://m.eaglercraft.com");
-  alert("Install this as a PWA and close this alert.");
+  function redirect() {
+    window.location.replace("https://m.eaglercraft.com");
+    alert("Install this as a PWA and close this alert.");
+  }
 </script>
 
 <noscript>You need to enable JavaScript for this page to function properly</noscript>
