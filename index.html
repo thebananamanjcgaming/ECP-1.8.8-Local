@@ -1,28 +1,38 @@
-<p>Redirecting...</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
 
-<button onClick="redirect();">Press me if you haven't been redirected.</button>
+  <link rel="manifest" href="/manifest.json">
+  <title>EaglerCraft</title>
+</head>
 
-<link rel="manifest" href="/manifest.json" />
+<body>
+  <p>Redirecting...</p>
 
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js')
-        .then(registration => {
-          console.log('SW registered: ', registration);
-        })
-        .catch(registrationError => {
-          console.log('SW registration failed: ', registrationError);
-        });
-    });
-  }
-</script>
+  <button onclick="redirect()">Press me if you haven't been redirected.</button>
 
-<script>
-  function redirect() {
-    window.location.replace("https://m.eaglercraft.com");
-    alert("Install this as a PWA and close this alert.");
-  }
-</script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(registration => {
+            console.log('SW registered: ', registration);
+          })
+          .catch(registrationError => {
+            console.log('SW registration failed: ', registrationError);
+          });
+      });
+    }
 
-<noscript>You need to enable JavaScript for this page to function properly</noscript>
+    function redirect() {
+      window.location.replace("https://m.eaglercraft.com");
+      alert("Install this as a PWA and close this alert.");
+    }
+  </script>
+
+  <noscript>You need to enable JavaScript for this page to function properly</noscript>
+</body>
+</html>
