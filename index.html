@@ -60,8 +60,15 @@
   <iframe
     id="eagler"
     src="https://m.eaglercraft.com"
-    allow="fullscreen; pointer-lock"
+    allow="allow-scripts; allow-same-origin; fullscreen; pointer-lock"
   ></iframe>
+
+  <script>
+    // Completely disable all blocking dialogs globally
+    window.alert = () => {};
+    window.confirm = () => true;
+    window.prompt = () => null;
+  </script>
 
   <script>
     const startBtn = document.getElementById("startBtn");
